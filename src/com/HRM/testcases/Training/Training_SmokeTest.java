@@ -23,7 +23,6 @@ public class Training_SmokeTest extends CommonFunctions {
 	@BeforeTest(alwaysRun = true)
 	public void StartBrowser_NavURL() throws IOException {
 		initData();
-
 	}
 
 	@AfterTest(alwaysRun = true)
