@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="116120" started-at="2016-09-23T08:43:52Z" finished-at="2016-09-23T08:45:48Z">
+    <groups>
+      <group name="Smoke">
+        <method signature="HR_SmokeTest_Emp.AddNewHireEmpWithSSN()[pri:17, instance:com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp@32e377c7]" name="AddNewHireEmpWithSSN" class="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp"/>
+      </group> <!-- Smoke -->
+      <group name="Nightly">
+        <method signature="HR_SmokeTest_Emp.AddNewHireEmpWithSSN()[pri:17, instance:com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp@32e377c7]" name="AddNewHireEmpWithSSN" class="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp"/>
+      </group> <!-- Nightly -->
+    </groups>
+    <test name="Default test" duration-ms="116120" started-at="2016-09-23T08:43:52Z" finished-at="2016-09-23T08:45:48Z">
+      <class name="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp">
+        <test-method status="PASS" signature="StartBrowser_NavURL()[pri:0, instance:com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp@32e377c7]" name="StartBrowser_NavURL" is-config="true" duration-ms="40" started-at="2016-09-23T14:13:52Z" finished-at="2016-09-23T14:13:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StartBrowser_NavURL -->
+        <test-method status="PASS" signature="AddNewHireEmpWithSSN()[pri:17, instance:com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp@32e377c7]" name="AddNewHireEmpWithSSN" duration-ms="113960" started-at="2016-09-23T14:13:52Z" description="Hiring an employee with SSN/SIN" finished-at="2016-09-23T14:15:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddNewHireEmpWithSSN -->
+        <test-method status="PASS" signature="ClosingBrowser()[pri:0, instance:com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp@32e377c7]" name="ClosingBrowser" is-config="true" duration-ms="2062" started-at="2016-09-23T14:15:46Z" finished-at="2016-09-23T14:15:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClosingBrowser -->
+      </class> <!-- com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

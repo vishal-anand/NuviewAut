@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome Test"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="50.487">
+  <properties />
+  
+  
+            <testcase name="verifyPromoteEmployee" time="38.760" classname="com.HRM.testcases.HR_TC.Processes.HR_SmokeTest" />
+                <testcase name="Login" time="11.727" classname="com.HRM.testcases.HR_TC.Processes.HR_SmokeTest" />
+      
+</testsuite>

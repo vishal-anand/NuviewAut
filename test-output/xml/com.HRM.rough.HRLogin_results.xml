@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome Test"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="95.093">
+  <properties />
+  
+  
+            <testcase name="verifyBenefitsRecalculateEligibilityButton" time="54.248" classname="com.HRM.rough.HRLogin" />
+                <testcase name="verifyEmpBenefitsDetail" time="40.845" classname="com.HRM.rough.HRLogin" />
+      
+</testsuite>

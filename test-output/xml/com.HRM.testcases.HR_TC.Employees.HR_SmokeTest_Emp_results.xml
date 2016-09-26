@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome Test"
+           tests="6"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="307.225">
+  <properties />
+  
+  
+            <testcase name="verifyEmpSalaryChanges" time="49.646" classname="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp" />
+                <testcase name="verifyEmpDetailUpdates" time="60.200" classname="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp" />
+                <testcase name="verifyEmpBonusChanges" time="52.902" classname="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp" />
+                <testcase name="verifyEmpBenefitsDetail" time="39.159" classname="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp" />
+                <testcase name="verifyEmpTraining" time="50.090" classname="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp" />
+                <testcase name="verifyBenefitsRecalculateEligibilityButton" time="55.228" classname="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp" />
+      
+</testsuite>
