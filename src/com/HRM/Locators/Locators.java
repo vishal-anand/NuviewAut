@@ -7,7 +7,7 @@ public class Locators {
 	
 //public static final String NuviewURL="http://172.16.104.51/lbp/WrkFlw.aspx?F_NavForm=Login";
 //public static final String NuviewURL="http://172.16.100.165/lbp/";
-  public static final String NuviewURL="http://172.16.106.156/lbp/";
+  public static final String NuviewURL="http://172.16.97.219/lbp/";
 // public static final String NuviewURL="http://172.16.97.222/lbp/";
 	
 	

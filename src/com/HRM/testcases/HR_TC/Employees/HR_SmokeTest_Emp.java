@@ -2747,7 +2747,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 
 } 
 	
-	@Test(enabled = true, priority = 17, groups = {"Smoke" , "Nightly" }, description = "Hiring an employee with SSN/SIN" )
+	@Test(enabled = false, priority = 17, groups = {"Smoke" , "Nightly" }, description = "Hiring an employee with SSN/SIN" )
 	public void AddNewHireEmpWithSSN() throws InterruptedException {
 
 		initBrowser();
@@ -2923,6 +2923,71 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		s_assert.assertAll();			
 			
 } 
+	
+	@Test(enabled = true, priority = 18, groups = {"Smoke"})
+	public void RehireMultipleEmp() throws InterruptedException {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		//Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Human Resources']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBLAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Rehire Summary_main_1']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_EmpTrnPrg_main_1']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_EmpBenDepRvw_main_1']")).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(10000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("edit");
+		// driver.findElement(By.xpath(".//*[@id='C_FirstName_main_1']/input[2]")).click();
+		// *[@id='C_LastName_main_1']/input[2]
+
+		// String test
+		// =driver.findElement(By.xpath(".//*[@id='TabSet_Menu']")).getText();
+
+		// System.out.println(test);
+		
+		Find();
+		
+		//Click(".//*[@id='C_ChkAll_main_1']");
+		Click(".//*[@id='C_Rehire_main_1']");
+		
+		if (isDialogPresent()) {
+			String Message = driver.findElement(By.xpath(".//*[@id='PopupText']/table/tbody/tr[1]/td")).getText().trim();
+
+			Assert.assertEquals(Message, "Please checked an employee to Rehire.");
+			
+		    //driver.switchTo().alert();
+		    Click(".//*[@id='F_MsgOk']");
+		    System.out.println("No Emp for Hire");
+		    //driver.switchTo().defaultContent();
+		}
+		
+		
+
+		driver.switchTo().defaultContent();
+
+		logOut();
+		s_assert.assertAll();	
+
+
+		
+
+	} 
+
 	
 
 }

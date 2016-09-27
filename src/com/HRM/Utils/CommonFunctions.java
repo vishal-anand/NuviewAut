@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriverException;
@@ -142,8 +143,11 @@ public void initBrowser(){
    
   }else if(SYSPARAM.getProperty("BrowserToTestIn").equals("CHRM")){
    //Write lines to open chrome browser.
-   System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\chromedriver.exe");
-   driver = new ChromeDriver();
+	//  For Windows
+  // System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\chromedriver.exe");
+	  //For MAc
+	  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//chromedriver");
+	  driver = new ChromeDriver();
    log.info("Chrome Browser Initialised");
 
   }
@@ -496,6 +500,16 @@ public boolean isAlertPresent() {
     catch (Exception e) {
         return false;
     } // catch
+}
+
+protected static boolean isDialogPresent() {
+    try {
+        driver.getTitle();
+        return true;
+    } catch (UnhandledAlertException e) {
+        // Modal dialog showed
+        return false;
+    }
 }
 
 public static void Find() throws InterruptedException {
