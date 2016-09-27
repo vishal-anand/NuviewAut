@@ -94,6 +94,15 @@ public  void SelectDropDownValue(String element, String obj) {
 	
 }
 
+public  void SelectDropDownIndex(String element, int index) {
+	Select select = new Select(driver.findElement(By.xpath(element)));
+	select.selectByIndex(index);
+	//.selectByValue(obj);
+	//System.out.println("Selected the Value:" + obj);
+	//selectByVisibleText(obj);
+	
+}
+
 /*public static void radiobutton_Select(WebElement Radio) {
 	boolean checkstatus;
 	checkstatus = Radio.isSelected();
@@ -156,6 +165,8 @@ public void initBrowser(){
  }
 }
 
+
+
 public static void webtableElementGetText(String xpath, String strText)
 {
 //WebElement ele1 = driver.findElement(By.xpath(xpath));
@@ -182,6 +193,44 @@ for(WebElement ele: allElements)
 	    }
 	    
 
+	
+}
+}
+
+public static void webtableElementTextAssert(String xpath, String strText)
+{
+//WebElement ele1 = driver.findElement(By.xpath(xpath));
+List<WebElement> allElements=driver.findElements(By.xpath(xpath));
+
+for(WebElement ele: allElements)
+{
+	
+	String PrefixName=ele.getText();
+			//getAttribute("display");
+		//	getText();
+	//System.out.println("Name:"+ PrefixName);
+	
+	
+	if(PrefixName.equalsIgnoreCase(strText)){
+		System.out.println("Text Found:" + PrefixName);
+	   
+        s_assert.assertTrue(true, "Pass");
+	    
+	    	break;
+	    }
+	    else {
+	    	continue;
+	    }
+	    
+	
+	//	ele.findElement(By.className(strLink)).click();
+		
+	//	ele.getAttribute("link")
+		//String s= ele.getAttribute("id");
+		//System.out.println(s);
+		//ele.click();
+		//break;
+	
 	
 }
 }
@@ -506,6 +555,14 @@ Set<String> s = driver.getWindowHandles();
 Iterator<String> itr = s.iterator();
 String w1 = (String) itr.next();
 String w2 = (String) itr.next();
+driver.switchTo().window(w1);
+}
+
+public static void switchToOldWindowClose() {
+Set<String> s = driver.getWindowHandles();
+Iterator<String> itr = s.iterator();
+String w1 = (String) itr.next();
+//String w2 = (String) itr.next();
 driver.switchTo().window(w1);
 }
 

@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp">
+      <class name="com.HRM.testcases.Recruiting.Recruiting_SmokeTest">
         <methods>
-          <include name="AddNewHireEmpWithSSN"/>
+          <include name="verifyUserAbleCreateNewRequisition"/>
           <include name="ClosingBrowser"/>
           <include name="StartBrowser_NavURL"/>
         </methods>
-      </class> <!-- com.HRM.testcases.HR_TC.Employees.HR_SmokeTest_Emp -->
+      </class> <!-- com.HRM.testcases.Recruiting.Recruiting_SmokeTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

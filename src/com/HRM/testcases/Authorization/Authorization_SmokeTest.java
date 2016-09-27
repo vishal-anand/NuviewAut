@@ -32,7 +32,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		closeBrowser();
 	}
 	
-	@Test(enabled = true, priority = 1, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" })
 	public void verifyUserCreate3LevelAuthorization() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
@@ -100,7 +100,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 2, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" })
 	public void verifyUserCreate3LevelHierarchy() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
@@ -376,7 +376,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 	
 	// Prerequisite Please make sure Authorization is already created with the name  ESS-SUP-HR
 	
-	@Test(enabled = true, priority = 3, groups = {"Smoke"})
+	@Test(enabled = false, priority = 3, groups = {"Smoke"})
 	public void verifyUseruserable2AssignAuthorization2form  () throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
@@ -502,6 +502,203 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		s_assert.assertAll();
 
 	}
+	
+	@Test(enabled = false, priority = 4, groups = {"Smoke"})
+	public void verifyUserAble2SetAndDeleteAuthorizationProxy() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+		String Start = GetCurrentDateAdd1();
+		String End = GetCurrentDateAdd2();
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_AthPxy_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("edit");
+		
+		String AuthorizationPageTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(AuthorizationPageTitle, "Manager Own Proxy");
+
+		driver.findElement(By.xpath(".//*[@id='N_PxyEmp_main_1_Img']")).click();
+		switchToNewWindow();
+		
+		driver.findElement(By.xpath(".//*[@id='C_FndLastName_main_1']/input[2]")).sendKeys("Allman");
+		Find();
+		driver.findElement(By.xpath(".//*[@id='C_Emp_main_1']")).click();
+		
+		switchToOldWindowClose() ;
+		
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		
+		
+		driver.findElement(By.xpath(".//*[@id='C_EmpPxyEffDt_main_1']/input[2]")).sendKeys(Start);
+		driver.findElement(By.xpath(".//*[@id='C_EmpPxyEfdDt_main_1']/input[2]")).sendKeys(End);
+		SelectDropDownValue(".//*[@id='C_Frm_main_1']/select", "EmlCurr");
+		radiobutton_Select(".//*[@id='C_InUse_main_1']/input[2]");
+		Save();
+		
+		//webtableElementGetText(".//*[@id='Datasheet-_main_1_Body']/table", "999141 {Allman,Jim}");
+		webtableElementTextAssert("//table[@class='datasheet']//td", "999141 {Allman,Jim}");
+		webtableElementClick("//table[@class='datasheet']//td", "999141 {Allman,Jim}", "link");
+		
+		Delete();
+		
+		/*driver.switchTo().window(w1);
+		driver.findElement(By.xpath(".//*[@id='C_PxyEmp_main_1']/input[2]")).sendKeys("");
+		driver.findElement(By.xpath(".//*[@id='C_WrkFlwName_main_1']/input[2]")).sendKeys("ESS to Test to HRAdmin");
+		Select DropAdministrator = new Select(
+				driver.findElement(By.xpath(".//*[@id='C_AthAdmin_main_1']/select")));
+		DropAdministrator.selectByValue("HRAdmin");
+		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+
+		driver.findElement(By.xpath(".//*[@id='C_WrkFlw_main_1']/input[2]")).sendKeys("ESS-TEST-HRAdmin");
+		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
+		
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("list");
+		
+		String Workflow = driver.findElement(By.xpath(".//*[@id='C_WrkFlw_main_1']")).getText();
+		s_assert.assertEquals(Workflow, "ESS-TEST-HRAdmin");
+
+		System.out.println("Verified 3 Level Authorization");
+		
+		driver.findElement(By.xpath(".//*[@id='C_WrkFlw_main_1']")).click();
+
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+		
+		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Alert alertOK = driver.switchTo().alert();
+		alertOK.accept();*/
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
+	@Test(enabled = true, priority = 5, groups = {"Smoke" , "Nightly" })
+	public void verifyUserAble2EditAuthorizationProxy() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+		String Start = GetCurrentDateAdd1();
+		String End = GetCurrentDateAdd2();
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_AthPxy_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("edit");
+		
+		String AuthorizationPageTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(AuthorizationPageTitle, "Manager Own Proxy");
+
+		driver.findElement(By.xpath(".//*[@id='N_PxyEmp_main_1_Img']")).click();
+		switchToNewWindow();
+		
+		driver.findElement(By.xpath(".//*[@id='C_FndLastName_main_1']/input[2]")).sendKeys("Allman");
+		Find();
+		driver.findElement(By.xpath(".//*[@id='C_Emp_main_1']")).click();
+		
+		switchToOldWindowClose() ;
+		
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		
+		
+		driver.findElement(By.xpath(".//*[@id='C_EmpPxyEffDt_main_1']/input[2]")).sendKeys(Start);
+		driver.findElement(By.xpath(".//*[@id='C_EmpPxyEfdDt_main_1']/input[2]")).sendKeys(End);
+		SelectDropDownIndex(".//*[@id='C_Frm_main_1']/select", 1);
+		radiobutton_Select(".//*[@id='C_InUse_main_1']/input[2]");
+		Save();
+		
+		//webtableElementGetText(".//*[@id='Datasheet-_main_1_Body']/table", "999141 {Allman,Jim}");
+		webtableElementTextAssert("//table[@class='datasheet']//td", "999141 {Allman,Jim}");
+		webtableElementClick("//table[@class='datasheet']//td", "999141 {Allman,Jim}", "link");
+		
+		SelectDropDownIndex(".//*[@id='C_Frm_main_1']/select", 0);
+		
+		Save();
+		webtableElementClick("//table[@class='datasheet']//td", "999141 {Allman,Jim}", "link");
+		Delete();
+		
+		/*driver.switchTo().window(w1);
+		driver.findElement(By.xpath(".//*[@id='C_PxyEmp_main_1']/input[2]")).sendKeys("");
+		driver.findElement(By.xpath(".//*[@id='C_WrkFlwName_main_1']/input[2]")).sendKeys("ESS to Test to HRAdmin");
+		Select DropAdministrator = new Select(
+				driver.findElement(By.xpath(".//*[@id='C_AthAdmin_main_1']/select")));
+		DropAdministrator.selectByValue("HRAdmin");
+		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+
+		driver.findElement(By.xpath(".//*[@id='C_WrkFlw_main_1']/input[2]")).sendKeys("ESS-TEST-HRAdmin");
+		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
+		
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("list");
+		
+		String Workflow = driver.findElement(By.xpath(".//*[@id='C_WrkFlw_main_1']")).getText();
+		s_assert.assertEquals(Workflow, "ESS-TEST-HRAdmin");
+
+		System.out.println("Verified 3 Level Authorization");
+		
+		driver.findElement(By.xpath(".//*[@id='C_WrkFlw_main_1']")).click();
+
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+		
+		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Alert alertOK = driver.switchTo().alert();
+		alertOK.accept();*/
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
+
 
 	
 }

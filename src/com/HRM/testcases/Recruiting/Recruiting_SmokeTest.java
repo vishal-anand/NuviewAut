@@ -299,10 +299,8 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Recruiting']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_ReqFind_main_1']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_Req_main_1']")).click();
-
 		// driver.switchTo().parentFrame();
 		driver.switchTo().defaultContent();
-
 		Thread.sleep(5000);
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -364,9 +362,9 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("edit");
 		
 		
-		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+	/*	driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alertOK = driver.switchTo().alert();
-		alertOK.accept();
+		alertOK.accept();*/
 		driver.switchTo().defaultContent();
 		logOut();
 		s_assert.assertAll();
@@ -375,7 +373,7 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 	
 	//
 	
-	@Test(enabled = true, priority = 5, groups = {"Smoke"})
+	@Test(enabled = false, priority = 5, groups = {"Smoke"})
 	public void verifyManageAbleCreateNewRequisition_HRAbleToApprove_HRAbleToChangePendingReqToOpen_MSSUserAbleToViewOpenReq() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
@@ -592,6 +590,49 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		logOut();
 		s_assert.assertAll();
 		
+
+	}
+	
+	@Test(enabled = true, priority = 6, groups = {"Smoke"})
+	public void verifyUserAblePublishPostingCSSAndWorkflow() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Recruiting']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_PublishToCSS_main_1']")).click();
+	//	driver.findElement(By.xpath(".//*[@id='C_Req_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("edit");
+		
+		String RequisitionPageTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(RequisitionPageTitle, "Publish to CSS");
+		
+		Click(".//*[@id='C_CSSPostJobs__1']");
+		
+		String PopUpValidation = driver.findElement(By.xpath(".//*[@id='PopupText']/table/tbody/tr[1]/td")).getText().trim();
+		s_assert.assertEquals(PopUpValidation, "CSSPostJobs has been added to the task queue.\nYou may continue to work while this process runs.");
+         Click(".//*[@id='F_MsgOk']");
+		
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
 
 	}
 
