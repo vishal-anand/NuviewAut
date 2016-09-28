@@ -1,14 +1,9 @@
 package com.HRM.testcases.MSS;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterTest;
@@ -311,6 +306,67 @@ List<WebElement> allDates=driver.findElements(By.xpath("//table[@class='calendar
 		
 		webtableElementGetText("//table[@class='datasheet']//td", "05/08/2010");
 		webtableElementGetText("//table[@class='datasheet']//td", "Vacation");
+
+		driver.switchTo().defaultContent();
+
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
+	@Test(enabled = true, priority = 4, groups = {"Smoke" , "Nightly" })
+	public void verifyEmpAble2OpenAuthorizationTrace() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_MSSTrace_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		/*driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+
+		
+
+	String PersonalinfPage = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(PersonalinfPage, "Managed Employees");
+		
+		String SupervisonNos = driver.findElement(By.xpath(".//*[@id='C_Sup_main_1']/input[2]")).getAttribute("value");
+		s_assert.assertEquals(SupervisonNos, "999503");
+		
+		driver.switchTo().defaultContent();*/
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("list");
+		
+		String PageTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(PageTitle, "Authorization Trace");
+		
+		Find();
+		
+		String PageTitleN = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(PageTitleN, "Authorization Trace");
+		
+		String ToDoName = driver.findElement(By.xpath(".//*[@id='GroupHeader--2_main_1_Label-To Do Name']")).getText();
+		s_assert.assertEquals(ToDoName, "To Do Name:");
+
+		
 
 		driver.switchTo().defaultContent();
 

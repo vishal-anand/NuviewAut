@@ -2,14 +2,7 @@
 package com.HRM.testcases.Payroll;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.logging.Logger;
-
-import org.apache.log4j.Level;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;

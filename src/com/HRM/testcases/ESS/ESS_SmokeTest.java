@@ -1082,5 +1082,162 @@ public class ESS_SmokeTest extends CommonFunctions {
 		s_assert.assertAll();
 
 	}
+	
+	@Test(enabled = true, priority = 10, groups = {"Smoke"} , description = "Verify Manager is able to Request for sub-ordinate time off/Verify Supervisor is able to approve request time off/Verify status of request time off at managers   ")
+	public void VerifyManagerAble2RequestSubordinateTimeoffSupervisorAble2ApproveReqAndVerifyTimeoffStatus () throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+		Thread.sleep(5000);
+		// String s = new CommonFunctions().GetCurrentDate();
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EFNAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_MSSTimOff_main_1']")).click();
+		
+		Switch2Right();
+		
+		webtableElementClick("//table[@class='datasheet']//td", "Adams, Felicia", "link");
+		
+		Switch2Middle();
+		DateFormat dateFormat2 = new SimpleDateFormat("dd");
+		Date date2 = new Date();
+
+		String today = dateFormat2.format(date2);
+
+		// find the calendar
+		WebElement dateWidget = driver.findElement(By.xpath(".//*[@id='C_TimeCal_main_1']/table/tbody"));
+		List<WebElement> columns = dateWidget.findElements(By.tagName("td"));
+
+		// comparing the text of cell with today's date and clicking it.
+		for (WebElement cell : columns) {
+		if (cell.getText().equals(today)) {
+		cell.click();
+		break;
+		}
+		}
+		Thread.sleep(50000);
+		System.out.println("Todays Date Selected, Please Proceed");
+		Select DropActivity = new Select(driver.findElement(By.xpath(".//*[@id='C_TimAct_main_0']/select")));
+		DropActivity.selectByValue("JuryDuty");
+		driver.findElement(By.xpath(".//*[@id='C_Hours_main_0']/input[2]")).sendKeys("8");
+		driver.findElement(By.xpath(".//*[@id='C_DatasheetOk_main_main_0']")).click();
+		// String EmpLeaveStatusP =
+		// driver.findElement(By.xpath(".//*[@id='C_SysStatus_main_0']/input[2]")).getText();
+		// s_assert.assertEquals(EmpLeaveStatusP, "Pending");
+		driver.findElement(By.xpath(".//*[@id='C_AuthSubmit_Img']")).click();
+
+		String PopupVer = driver.findElement(By.xpath(".//*[@id='PopupText']/table/tbody/tr[1]/td")).getText().trim();
+		s_assert.assertEquals(PopupVer, "Your request will be sent to Sam Adams, Jerry Berman, Felicia Adams etc for approval.");
+		driver.findElement(By.xpath(".//*[@id='F_MsgOk']")).click();
+		//driver.switchTo().defaultContent();
+        Switch2Left();
+		driver.switchTo().defaultContent();
+		logOut();
+		
+		logIn("fulldemo", "nuview");
+		// driver.switchTo().defaultContent();
+		Thread.sleep(5000);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='C_ToDo_main_1']")).click();
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.findElement(By.xpath(".//*[@id='C_Dsp_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_AuthApprove_Img']")).click();
+		String PopupApprovalConfirmationS = driver.findElement(By.xpath(".//*[@id='PopupText']/table/tbody/tr[1]/td"))
+				.getText().trim();
+		s_assert.assertEquals(PopupApprovalConfirmationS,
+				"This authorization has been approved and the record(s) will be saved.");
+		// driver.switchTo().defaultContent();
+		driver.findElement(By.xpath(".//*[@id='F_MsgOk']")).click();
+		
+		driver.switchTo().defaultContent();
+
+		logOut();
+		
+		logIn("nvsuperuser1", "nuview");
+		Thread.sleep(5000);
+		// String s = new CommonFunctions().GetCurrentDate();
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EFNAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_MSSTimOff_main_1']")).click();
+		
+		Switch2Right();
+		
+		webtableElementClick("//table[@class='datasheet']//td", "Adams, Felicia", "link");
+		
+		
+		Switch2Middle();
+		
+		// find the calendar
+		WebElement dateWidget1 = driver.findElement(By.xpath(".//*[@id='C_TimeCal_main_1']/table/tbody"));
+		List<WebElement> columns1 = dateWidget1.findElements(By.tagName("td"));
+
+		// comparing the text of cell with today's date and clicking it.
+		for (WebElement cell : columns1) {
+		if (cell.getText().equals("Approved")) {
+		cell.click();
+		break;
+		}
+		}
+		
+		String Activity = new Select(driver.findElement(By.xpath(".//*[@id='C_TimAct_main_0']/select"))).getFirstSelectedOption().getAttribute("value");
+		s_assert.assertEquals( Activity, "JuryDuty");
+		
+		String Status = driver.findElement(By.xpath(".//*[@id='C_SysStatus_main_0']/input[2]"))
+				.getAttribute("value");
+		s_assert.assertEquals(Status,
+				"Approved");
+		
+		Click(".//*[@id='C_DatasheetRemove_main_main_0']");
+		driver.findElement(By.xpath(".//*[@id='C_AuthSubmit_Img']")).click();
+		
+		String PopupVerN = driver.findElement(By.xpath(".//*[@id='PopupText']/table/tbody/tr[1]/td")).getText().trim();
+		s_assert.assertEquals(PopupVerN, "Your request will be sent to Sam Adams, Jerry Berman, Felicia Adams etc for approval.");
+		driver.findElement(By.xpath(".//*[@id='F_MsgOk']")).click();
+		//driver.switchTo().defaultContent();
+        Switch2Left();
+		driver.switchTo().defaultContent();
+		logOut();
+		
+		logIn("fulldemo", "nuview");
+		// driver.switchTo().defaultContent();
+		Thread.sleep(5000);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='C_ToDo_main_1']")).click();
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.findElement(By.xpath(".//*[@id='C_Dsp_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_AuthApprove_Img']")).click();
+		String PopupApprovalConfirmationN = driver.findElement(By.xpath(".//*[@id='PopupText']/table/tbody/tr[1]/td"))
+				.getText().trim();
+		s_assert.assertEquals(PopupApprovalConfirmationN,
+				"This authorization has been approved and the record(s) will be saved.");
+		// driver.switchTo().defaultContent();
+		driver.findElement(By.xpath(".//*[@id='F_MsgOk']")).click();
+		
+		driver.switchTo().defaultContent();
+
+		logOut();
+
+		s_assert.assertAll();
+
+	}
+
 
 }
