@@ -2926,7 +2926,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 	
 	@Test(enabled = true, priority = 18, groups = {"Smoke"})
 	public void RehireMultipleEmp() throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
