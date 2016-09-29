@@ -1749,5 +1749,137 @@ Wait till Workflows are completed.
 		s_assert.assertAll();
 
 	}
+	
+	@Test(enabled = true, priority = 15, groups = {"Smoke" , "Nightly" } , description = "Verify that under dependents tab, dependents should not show up. ")
+	public void verifyDependentsDontshowup() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+		
+		//int Year = GetCurrentYear();
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Human Resources']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EmpFind_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EJALAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBJALAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EmpBen_main_1']")).click();
+
+		Thread.sleep(5000);
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		// Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+		
+		Find();
+		
+		Switch2Right();
+		
+		//webtableElementGetText("//table[@class='datasheet']//td", "TestALEGroup");
+		webtableElementClick("//table[@class='datasheet']//td", "Bing, Chandler", "link");
+	//	Thread.sleep(5000);
+	//	Delete();
+		Switch2Middle();
+		
+		webtableElementClick("//table[@class='datasheet']//td", "BasicLifeIns 12", "link");
+		Click(".//*[@id='TabTitle__Dependents']");
+		
+		 if(driver.findElements(By.xpath(".//*[@id='F_Dep_dependents_1']")).isEmpty()){
+		        //THEN CLICK ON THE SUBMIT BUTTON
+			 
+			 s_assert.assertTrue(true);
+			 System.out.println("Dependent Not Found");
+		    }else{
+		    	
+		    	System.out.println("Dependent Found");
+		        //DO SOMETHING ELSE AS SUBMIT BUTTON IS NOT THERE
+		    	s_assert.fail();
+		    }
+		
+		
+		
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
+	@Test(enabled = true, priority = 16, groups = {"Smoke" , "Nightly" } , description = "Verify that under the Beneficiaries Tab, Beneficiaries should not showup.  ")
+	public void verifyBeneficiariesDontshowup() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn("nvsuperuser1", "nuview");
+		
+		//int Year = GetCurrentYear();
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Human Resources']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EmpFind_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EJALAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBJALAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EmpBen_main_1']")).click();
+
+		Thread.sleep(5000);
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		// Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+		
+		Find();
+		
+		Switch2Right();
+		
+		//webtableElementGetText("//table[@class='datasheet']//td", "TestALEGroup");
+		webtableElementClick("//table[@class='datasheet']//td", "Bing, Chandler", "link");
+	//	Thread.sleep(5000);
+	//	Delete();
+		Switch2Middle();
+		
+		webtableElementClick("//table[@class='datasheet']//td", "BasicLifeIns 12", "link");
+		Click(".//*[@id='TabTitle__Beneficiaries']");
+		
+		 if(driver.findElements(By.xpath(".//*[@id='F_BnfNum_beneficiaries_1']")).isEmpty()){
+		        //THEN CLICK ON THE SUBMIT BUTTON
+			 
+			 s_assert.assertTrue(true);
+			 System.out.println("Beneficiary Not Found");
+		    }else{
+		    	
+		    	System.out.println("Beneficiary Found");
+		        //DO SOMETHING ELSE AS SUBMIT BUTTON IS NOT THERE
+		    	s_assert.fail();
+		    }
+		
+		
+		
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
 
 }
