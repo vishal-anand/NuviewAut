@@ -27,7 +27,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		closeBrowser();
 	}
 	
-	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" }, description = "C855567-Verify the user is able to Create 3 level Authorization ")
 	public void verifyUserCreate3LevelAuthorization() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
@@ -95,7 +95,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" }, description = "C855568-Verify the user is able to Create 3 level Hierarchy ")
 	public void verifyUserCreate3LevelHierarchy() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
@@ -371,7 +371,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 	
 	// Prerequisite Please make sure Authorization is already created with the name  ESS-SUP-HR
 	
-	@Test(enabled = false, priority = 3, groups = {"Smoke"})
+	@Test(enabled = false, priority = 3, groups = {"Smoke"}, description = "C855569-Verify the user is able to Assign the Authorization to form ")
 	public void verifyUseruserable2AssignAuthorization2form  () throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
