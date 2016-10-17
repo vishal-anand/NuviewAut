@@ -27,20 +27,21 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		closeBrowser();
 	}
 	
-	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" }, description = "C855567-Verify the user is able to Create 3 level Authorization ")
+	@Test(enabled = true, priority = 1, groups = {"Smoke" , "Nightly" }, description = "C855567-Verify the user is able to Create 3 level Authorization ")
 	public void verifyUserCreate3LevelAuthorization() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_System']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECAAANA' or @display='Security']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_AthFind_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -95,20 +96,21 @@ public class Authorization_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" }, description = "C855568-Verify the user is able to Create 3 level Hierarchy ")
+	@Test(enabled = true, priority = 2, groups = {"Smoke" , "Nightly" }, description = "C855568-Verify the user is able to Create 3 level Hierarchy ")
 	public void verifyUserCreate3LevelHierarchy() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_System']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECAAANA' or @display='Security']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_AthFind_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -243,7 +245,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -377,14 +379,15 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_System']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECAAANA' or display='Security']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_AthFind_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -504,7 +507,7 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		String Start = GetCurrentDateAdd1();
 		String End = GetCurrentDateAdd2();
 
@@ -594,13 +597,13 @@ public class Authorization_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 5, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 5, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2EditAuthorizationProxy() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		String Start = GetCurrentDateAdd1();
 		String End = GetCurrentDateAdd2();
 
@@ -609,7 +612,8 @@ public class Authorization_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA' or @display='Authorizations' and @tip='MSSAth']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_AthPxy_main_1']")).click();
 
 		// driver.switchTo().parentFrame();

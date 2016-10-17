@@ -91,7 +91,7 @@ public class Comp_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -99,7 +99,8 @@ public class Comp_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("nav");
 
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Compensation']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBJAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBJAANA']")).click();
+		driver.findElement(By.xpath(".//*[@display='Tables' and @tip='CpsTables']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_IcvGrp_main_1']")).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		// driver.switchTo().parentFrame();
@@ -123,7 +124,19 @@ public class Comp_SmokeTest extends CommonFunctions {
 
 
 
-		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 
 		Thread.sleep(5000);
 		
@@ -131,16 +144,15 @@ public class Comp_SmokeTest extends CommonFunctions {
 		driver.findElement(By.xpath(".//*[@id='C_CpsGrpName_main_1']/input[2]")).sendKeys("Vishal");
 		driver.findElement(By.xpath(".//*[@id='C_CpsGrpDesc_main_1']/textarea")).sendKeys("Vishal Compensation");
 		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
-		String NewCompGrp = driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_6']")).getText();//Change to 6 for old systems
+		//String NewCompGrp = driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_6']")).getText();//Change to 6 for old systems
 
-		Assert.assertEquals(NewCompGrp, "Vishal Group");
+		//Assert.assertEquals(NewCompGrp, "Vishal Group");
 		
-		driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_6']")).click();
-		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
-		Alert alert = driver.switchTo().alert();
-		alert.accept();
+         webtableElementGetText("//table[@class='datasheet']//td", "Vishal Group");
 		
-		
+		webtableElementClick("//table[@class='datasheet']//td", "Vishal Group", "link");
+		Delete();
+
 		driver.switchTo().defaultContent();
 		logOut();
 
@@ -154,7 +166,7 @@ public class Comp_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -187,7 +199,18 @@ public class Comp_SmokeTest extends CommonFunctions {
 
 
 
-		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 
 		Thread.sleep(5000);
 		
@@ -272,13 +295,13 @@ public class Comp_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
+	/*@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
 	public void verifyEmpCompensationPlan() throws InterruptedException {
 		
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -310,8 +333,8 @@ public class Comp_SmokeTest extends CommonFunctions {
 
 		String CompPlanTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
 
-		Assert.assertEquals(CompPlanTitle, "Compensation Plans");
-
+		s_assert.assertEquals(CompPlanTitle, "Compensation Plans");
+		
 		driver.findElement(By.xpath(".//*[@id='C_CpsPln_main_1']")).click();
 
 		Thread.sleep(5000);
@@ -320,11 +343,11 @@ public class Comp_SmokeTest extends CommonFunctions {
 		
 		String EmpCompPlanData = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
 
-		Assert.assertEquals(EmpCompPlanData, "Employee Compensation Plan Data");
+		s_assert.assertEquals(EmpCompPlanData, "Employee Compensation Plan Data");
 		
 		String CompPlan = driver.findElement(By.xpath(".//*[@id='C_ConPln_main_1']")).getText();
 
-		Assert.assertEquals(CompPlan, "2012_HrFin2_Periodic (Jan 01, 2012)");
+		s_assert.assertEquals(CompPlan, "2012_HrFin2_Periodic (Jan 01, 2012)");
 		//Assert.assertEquals(CompPlan, "2016_TestPlan_Periodic (Sep 01, 2016)");
 		
 		
@@ -333,19 +356,93 @@ public class Comp_SmokeTest extends CommonFunctions {
 		
 		driver.switchTo().defaultContent();
 		logOut();
+		s_assert.assertAll();
+		
+
+	}*/
+	
+	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
+	public void verifyEmpCompensationPlan() throws InterruptedException {
+		
+		 initBrowser();
+		  driver.get(Locators.NuviewURL);
+		  //Enter your real Userd ID and Password of FB bellow.
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Compensation']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBJAANA']")).click();
+		driver.findElement(By.xpath(".//*[@display='Tables' and @tip='CpsTables']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_IcvGrp_main_1']")).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(10000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("edit");
+		// driver.findElement(By.xpath(".//*[@id='C_FirstName_main_1']/input[2]")).click();
+		// *[@id='C_LastName_main_1']/input[2]
+
+		// String test
+		// =driver.findElement(By.xpath(".//*[@id='TabSet_Menu']")).getText();
+
+		// System.out.println(test);
+
+
+
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
+
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(".//*[@id='C_CpsGrp_main_1']/input[2]")).sendKeys("Vishal Group");
+		driver.findElement(By.xpath(".//*[@id='C_CpsGrpName_main_1']/input[2]")).sendKeys("Vishal");
+		driver.findElement(By.xpath(".//*[@id='C_CpsGrpDesc_main_1']/textarea")).sendKeys("Vishal Compensation");
+		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		//String NewCompGrp = driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_6']")).getText();//Change to 6 for old systems
+
+		//Assert.assertEquals(NewCompGrp, "Vishal Group");
+		
+         webtableElementGetText("//table[@class='datasheet']//td", "Vishal Group");
+		
+		webtableElementClick("//table[@class='datasheet']//td", "Vishal Group", "link");
+		Delete();
+
+		driver.switchTo().defaultContent();
+		logOut();
 
 		
 
 	}
 
 	
-	@Test(enabled = true, priority = 4, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 4, groups = {"Smoke" , "Nightly" })
 	public void verifyEmpCompensationScenarioDesign() throws InterruptedException {
 		
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -414,13 +511,13 @@ public class Comp_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 5, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 5, groups = {"Smoke" , "Nightly" })
 	public void verifyEmpCompensationProfile() throws InterruptedException {
 		
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -511,6 +608,146 @@ public class Comp_SmokeTest extends CommonFunctions {
 
 	} 
 	
+	@Test(enabled = true, priority = 7, groups = {"Smoke","Nightly" })
+	public void verifyCreateCompensationPlan() throws InterruptedException {
+		
+		 initBrowser();
+		  driver.get(Locators.NuviewURL);
+		  //Enter your real Userd ID and Password of FB bellow.
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Compensation']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Plans_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_CpsPln_main_1']")).click();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(10000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+		// driver.findElement(By.xpath(".//*[@id='C_FirstName_main_1']/input[2]")).click();
+		// *[@id='C_LastName_main_1']/input[2]
+
+		// String test
+		// =driver.findElement(By.xpath(".//*[@id='TabSet_Menu']")).getText();
+
+
+		// System.out.println(test);
+
+
+
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
+
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(".//*[@id='C_CpsPlnYr_main_1']/input[2]")).sendKeys("2016");
+		//.sendKeys("Vishal Group");
+		driver.findElement(By.xpath(".//*[@id='C_CpsPln_main_1']/input[2]")).sendKeys("VCompPlan");
+		
+		Select dropdowntype = new Select(driver.findElement(By.xpath(".//*[@id='C_PlnTyp_main_1']/select")));
+		dropdowntype.selectByValue("Periodic");
+		
+		Thread.sleep(5000);
+		
+		Select dropdownsalchngreason = new Select(driver.findElement(By.xpath(".//*[@id='C_SalChgRsn_main_1']/select")));
+		//dropdownsalchngreason.selectByValue("Other");
+		dropdownsalchngreason.selectByIndex(1);
+		
+		Thread.sleep(5000);
+		Select dropdownempchngreason = new Select(driver.findElement(By.xpath(".//*[@id='C_EmlChgRsn_main_1']/select")));
+		//Select dropdownempchngreason = new Select(driver.findElement(By.xpath(".//*[@id='C_EmlChgRsn_main_1']/select/optgroup[5]")));
+		//dropdownempchngreason.selectByIndex(4);
+		dropdownempchngreason.selectByValue("Progression");
+		
+		Thread.sleep(5000);
+		
+		/*Select dropdownhierarchy = new Select(driver.findElement(By.xpath(".//*[@id='C_CpsPlnHrch_main_1']/table/tbody/tr/td[1]/select")));
+		dropdownhierarchy.selectByValue("Cmp");
+		
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(".//*[@id='C_CpsPlnHrch_main_1']/table/tbody/tr/td[2]/img[1]")).click();
+		
+		driver.findElement(By.xpath(".//*[@id='TabTitle__Components']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_DatasheetNew_CpsPlnTyp_CpsPlnTyp_0']")).click();
+		
+		Select dropdownComp = new Select(driver.findElement(By.xpath(".//*[@id='C_CpsComp_CpsPlnTyp_0']/select")));
+		dropdownComp.selectByValue("Base");
+		driver.findElement(By.xpath(".//*[@id='C_DatasheetOk_CpsPlnTyp_CpsPlnTyp_0']")).click();*/
+		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		
+		driver.findElement(By.xpath(".//*[@id='C_CpsPlnYr_main_1']/input[2]")).sendKeys("2016");
+		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
+		
+		Thread.sleep(5000);
+		
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("list");
+		
+		
+		//String CompPlannew = driver.findElement(By.xpath(".//*[@id='C_CpsPln_main_1']")).getText();
+
+		//Assert.assertEquals(CompPlannew, "VCompPlan");
+		
+		//driver.findElement(By.xpath(".//*[@id='C_CpsPln_main_1']")).click();
+		
+		webtableElementTextAssert("//table[@class='datasheet']//td", "VCompPlan");
+		webtableElementClick("//table[@class='datasheet']//td", "VCompPlan", "link");
+		
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+		
+		/*driver.findElement(By.xpath(".//*[@id='TabTitle__Components']")).click();
+		driver.findElement(By.xpath(".//*[@id='F_CpsComp_CpsPlnTyp_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_DatasheetRemove_CpsPlnTyp_CpsPlnTyp_0']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(".//*[@id='C_CpsPlnYr_main_1']/input[2]")).sendKeys("2016");
+		driver.findElement(By.xpath(".//*[@id='C_CpsPlnYr_main_1']/input[2]")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath(".//*[@id='C_CpsPln_main_1']")).click();*/
+		
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+
+		Alert alert = driver.switchTo().alert();
+		alert.accept();*/
+		Delete();
+		Thread.sleep(5000);
+		
+		driver.switchTo().defaultContent();
+		logOut();
+
+		
+
+	}
+	
 	
 /*	@Test(enabled = false, priority = 6)
 	public void VerifyCompGroupNewHire() throws InterruptedException {
@@ -518,7 +755,7 @@ public class Comp_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 //New Hire Started
 
 		driver.switchTo().frame("nav");

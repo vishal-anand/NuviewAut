@@ -20,13 +20,15 @@ public class Benefits_SmokeTest extends CommonFunctions {
 	SoftAssert s_assert = new SoftAssert();
 
 	@BeforeTest(alwaysRun = true)
-	public void StartBrowser_NavURL() throws IOException {
+	public void StartBrowser_NavURL() throws IOException, InterruptedException {
 		initData();
+		BenefitDataCreation();
 
 	}
 
 	@AfterTest(alwaysRun = true)
-	public void ClosingBrowser() {
+	public void ClosingBrowser() throws Throwable, InterruptedException {
+		BenefitDataTearDown();
 		closeBrowser();
 	}
 /*Prerequisites to Run Benefits Test Cases
@@ -72,7 +74,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -166,7 +168,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -269,7 +271,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -343,7 +345,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -476,7 +478,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -581,7 +583,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -705,7 +707,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -864,7 +866,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -1036,7 +1038,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -1159,7 +1161,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -1318,7 +1320,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -1489,7 +1491,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -1591,7 +1593,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -1703,7 +1705,7 @@ Wait till Workflows are completed.
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		int Year = GetCurrentYear();
 
@@ -1750,13 +1752,13 @@ Wait till Workflows are completed.
 
 	}
 	
-	@Test(enabled = true, priority = 15, groups = {"Smoke" , "Nightly" } , description = "Verify that under dependents tab, dependents should not show up. ")
+	@Test(enabled = false, priority = 15, groups = {"Smoke" , "Nightly" } , description = "Verify that under dependents tab, dependents should not show up. ")
 	public void verifyDependentsDontshowup() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		//int Year = GetCurrentYear();
 
@@ -1816,13 +1818,13 @@ Wait till Workflows are completed.
 
 	}
 	
-	@Test(enabled = true, priority = 16, groups = {"Smoke" , "Nightly" } , description = "Verify that under the Beneficiaries Tab, Beneficiaries should not showup.  ")
+	@Test(enabled = false, priority = 16, groups = {"Smoke" , "Nightly" } , description = "Verify that under the Beneficiaries Tab, Beneficiaries should not showup.  ")
 	public void verifyBeneficiariesDontshowup() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		//int Year = GetCurrentYear();
 
@@ -1877,6 +1879,94 @@ Wait till Workflows are completed.
 		
 		
 		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
+	@Test(enabled = true, priority = 17, groups = {"Smoke" , "Nightly" })
+	public void verifyCreateEnrollmentPeriodNew() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Benefits']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Insurance_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EnrSum_main_1']")).click();
+
+		Thread.sleep(5000);
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		// Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		// driver.switchTo().frame("edit");
+		String EnrollPeriodTitle = driver
+				.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(EnrollPeriodTitle, "Enrollment Periods");
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
+		Select DropEnrollmentType = new Select(driver.findElement(By.xpath(".//*[@id='C_EnrTyp_main_1']/select")));
+		DropEnrollmentType.selectByValue("Open");
+		//DropEnrollmentType.selectByIndex(1);
+		driver.findElement(By.xpath(".//*[@id='C_EnrNum_main_1']/input[2]")).sendKeys("2030");
+		Select DropCopyFrom = new Select(driver.findElement(By.xpath(".//*[@id='C_CopyFr_main_1']/select")));
+		//DropCopyFrom.selectByValue("Open-2013");
+		DropCopyFrom.selectByIndex(1);
+		driver.findElement(By.xpath(".//*[@id='C_EnrStartDt_main_1']/input[2]")).sendKeys("01/01/2030");
+		driver.findElement(By.xpath(".//*[@id='C_EnrEndDt_main_1']/input[2]")).sendKeys("12/31/2030");
+		driver.findElement(By.xpath(".//*[@id='C_DedStartDt_main_1']/input[2]")).sendKeys("01/01/2030");
+		driver.findElement(By.xpath(".//*[@id='C_DedEndDt_main_1']/input[2]")).sendKeys("12/31/2030");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_top_Open Enrollment']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_OEStartDt_main_1']/input[2]")).sendKeys("01/01/2030");
+		driver.findElement(By.xpath(".//*[@id='C_OEEndDt_main_1']/input[2]")).sendKeys("12/31/2030");
+		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		// String xpath =
+		// ".//*[@id='Datasheet-_main_1_Body']/table[1]/tbody/tr[%s]/td[%s]";
+		// String cellvaues = driver.findElement(By.xpath(String.format(xpath,
+		// getrowvalue, getcolumnvalue))).getText();
+		// String ExistingEmpExists =
+		// driver.findElement(By.xpath(".//*[@id='C_FullName_main_1']")).getText();
+
+		//String EnrollmentName = driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_11']")).getText();
+
+		//s_assert.assertEquals(EnrollmentName, "Open-2030");
+		
+		webtableElementGetText("//table[@class='datasheet']//td", "2030");
+		
+		webtableElementClick("//table[@class='datasheet']//td", "Open-2030", "link");
+		
+		
+		//driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_10']")).click();
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Alert alertok = driver.switchTo().alert();
+		alertok.accept();*/
+		Delete();
+
+		driver.switchTo().defaultContent();
+
 		logOut();
 		s_assert.assertAll();
 

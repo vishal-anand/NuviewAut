@@ -40,7 +40,7 @@ public class Payroll_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Switch2LeftLogin();
@@ -84,7 +84,7 @@ public class Payroll_SmokeTest extends CommonFunctions {
 		
 		Thread.sleep(5000);
 		
-		Find();
+	//	Find();
 		
 		//driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		
@@ -138,7 +138,7 @@ public class Payroll_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Switch2LeftLogin();
@@ -179,8 +179,8 @@ public class Payroll_SmokeTest extends CommonFunctions {
 		
 		driver.findElement(By.xpath(".//*[@id='C_PayGrpName_main_1']/input[2]")).sendKeys("Test1");
 		
-		Select dropdownInterface = new Select(driver.findElement(By.xpath(".//*[@id='C_PayrollPrefix_main_1']/select")));
-		dropdownInterface.selectByValue("ADPUK");
+		//Select dropdownInterface = new Select(driver.findElement(By.xpath(".//*[@id='C_PayrollPrefix_main_1']/select")));
+		//dropdownInterface.selectByValue("ADPUK");
 		
 		
 		Save();
@@ -257,7 +257,7 @@ public class Payroll_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();

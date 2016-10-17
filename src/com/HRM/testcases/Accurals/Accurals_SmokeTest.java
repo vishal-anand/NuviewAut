@@ -26,15 +26,15 @@ public class Accurals_SmokeTest extends CommonFunctions {
 
 
 	@BeforeTest(alwaysRun = true)
-	public void StartBrowser_NavURL() throws IOException {
+	public void StartBrowser_NavURL() throws IOException, InterruptedException {
 		
 		initData();
-
+		TimeSheetDataCreation();
 	}
 
 	@AfterTest(alwaysRun = true)
-	public void ClosingBrowser() {
-		
+	public void ClosingBrowser() throws IOException, InterruptedException  {
+		TimeSheetDataTearDown();
 		closeBrowser();
 	}
 	
@@ -44,7 +44,8 @@ public class Accurals_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		//logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -63,11 +64,24 @@ public class Accurals_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("dsp");
 		//driver.switchTo().frame("edit");
 		
-		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+	//	driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 		
 		driver.findElement(By.xpath(".//*[@id='C_Tcl_main_1']/input[2]")).sendKeys("Test");
 		driver.findElement(By.xpath(".//*[@id='C_TclName_main_1']/input[2]")).sendKeys("Test");
-		SelectDropDownValue(".//*[@id='C_AbsCat_main_1']/select", "Vacation");
+		//SelectDropDownValue(".//*[@id='C_AbsCat_main_1']/select", "Vacation");
+		SelectDropDownIndex(".//*[@id='C_AbsCat_main_1']/select", 1);
 		radiobutton_Select(".//*[@id='C_IsScheduled_main_1']/input[2]");
 		SelectDropDownValue(".//*[@id='C_TclPeriod_main_1']/select", "Yearly");
 		SelectDropDownValue(".//*[@id='C_SysSchOnYear_main_1']/select", "YearStart");
@@ -185,13 +199,13 @@ public class Accurals_SmokeTest extends CommonFunctions {
 		
 	}
 	
-	@Test(enabled = true, priority = 2, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2AddAccrualCatForEmp () throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -204,8 +218,10 @@ public class Accurals_SmokeTest extends CommonFunctions {
 		//driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Human Resources']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_EmpFind_main_1']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECALAANA']")).click();
-		driver.findElement(By.xpath(".//*[@id='C_EmpTclCat_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECALAANA' or @display='Time/Attendance']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EmpTclCat_main_1' or @display='Accrual Eligibility']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECALAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_EmpTclCat_main_1']")).click();
 		
           driver.switchTo().defaultContent();
 		
@@ -291,13 +307,13 @@ public class Accurals_SmokeTest extends CommonFunctions {
 		
 	}
 
-	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 3, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2CheckAccuralCategoryForAbsences  () throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

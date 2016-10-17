@@ -49,6 +49,130 @@ public void initData() throws IOException{
  
 }
 
+//Data Creation Funtions 
+
+
+//For Benefits
+
+public void BenefitDataCreation() throws IOException, InterruptedException{
+	initBrowser();
+	  driver.get(Locators.NuviewURL);
+	  //Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+	 Switch2LeftLogin();
+	 Thread.sleep(15000);
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Benefits']")).click();
+		driver.findElement(By.xpath(".//*[@display='Tables' and @tip='BenTbl']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EnrTyp_main_1']")).click();
+	
+
+
+	//Thread.sleep(5000);
+
+	Switch2MidException();
+	
+	if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+		
+		
+		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+	
+	}
+	
+	else
+	{	
+	log.info("Find Element No Present");
+	}
+	driver.findElement(By.xpath(".//*[@id='C_EnrTyp_main_1']/input[2]")).sendKeys("Open");
+	driver.findElement(By.xpath(".//*[@id='C_EnrTypDesc_main_1']/input[2]")).sendKeys("Open");
+	 Save();
+	 driver.switchTo().defaultContent();
+		logOut();
+	}
+
+public void BenefitDataTearDown() throws IOException, InterruptedException{
+	initBrowser();
+	  driver.get(Locators.NuviewURL);
+	  //Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+	 Switch2LeftLogin();
+	 Thread.sleep(15000);
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Benefits']")).click();
+		driver.findElement(By.xpath(".//*[@display='Tables' and @tip='BenTbl']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_EnrTyp_main_1']")).click();
+	
+
+
+	//Thread.sleep(5000);
+
+	Switch2MidException();
+	
+	webtableElementClick("//table[@class='datasheet']//td", "Open", "link");
+	Delete();
+	driver.switchTo().defaultContent();
+	logOut();
+	}
+
+
+//For Timesheet
+
+public void TimeSheetDataCreation() throws IOException, InterruptedException{
+	initBrowser();
+	  driver.get(Locators.NuviewURL);
+	  //Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+	 Switch2LeftLogin();
+	 Thread.sleep(15000);
+	 driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
+     driver.findElement(By.xpath(".//*[@id='C_AbsCat_main_1']")).click();
+	System.out.println("Clicked");
+	
+
+
+	Thread.sleep(5000);
+
+	Switch2MidException();
+	
+	if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+		
+		
+		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+	
+	}
+	
+	else
+	{	
+	log.info("Find Element No Present");
+	}
+	driver.findElement(By.xpath(".//*[@id='C_AbsCat_main_1']/input[2]")).sendKeys("VAbCat");
+	 Save();
+	 driver.switchTo().defaultContent();
+		logOut();
+	}
+
+public void TimeSheetDataTearDown() throws IOException, InterruptedException{
+	initBrowser();
+	  driver.get(Locators.NuviewURL);
+	  //Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+	 Switch2LeftLogin();
+	 Thread.sleep(15000);
+	 driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
+   driver.findElement(By.xpath(".//*[@id='C_AbsCat_main_1']")).click();
+	System.out.println("Clicked");
+	
+
+
+	Thread.sleep(5000);
+
+	Switch2MidException();
+	
+	webtableElementClick("//table[@class='datasheet']//td", "VAbCat", "link");
+	Delete();
+	driver.switchTo().defaultContent();
+	logOut();
+	
+}
+
 public static void clickWebelement(WebElement element) {
 	try {
 		boolean elementIsClickable = element.isEnabled();

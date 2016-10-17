@@ -36,7 +36,7 @@ public class Training_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		Switch2LeftLogin();
@@ -102,7 +102,7 @@ public class Training_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		String Current = new CommonFunctions().GetCurrentDate();
 		String CurrentPlus10 = new CommonFunctions().GetCurrentDateAdd10();
 
@@ -184,8 +184,8 @@ public class Training_SmokeTest extends CommonFunctions {
 		// driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
 
 		driver.findElement(By.xpath(".//*[@id='C_Cls_main_1']/input[2]")).sendKeys("1");
-		Select DropClassStatus = new Select(driver.findElement(By.xpath(".//*[@id='C_ClsSts_main_1']/select")));
-		DropClassStatus.selectByValue("Open");
+		//Select DropClassStatus = new Select(driver.findElement(By.xpath(".//*[@id='C_ClsSts_main_1']/select")));
+		//DropClassStatus.selectByValue("Open");
 
 		driver.findElement(By.xpath(".//*[@id='TabTitle__Schedule']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_FromDate_main_1']/input[2]")).sendKeys(Current);
@@ -240,13 +240,13 @@ public class Training_SmokeTest extends CommonFunctions {
 
 	}
 
-	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 3, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2Enroll2ClassAndPresentInClassCalendar() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		String Current = new CommonFunctions().GetCurrentDate();
 		// String CurrentPlus10 = new CommonFunctions().GetCurrentDateAdd10();
 
@@ -629,7 +629,7 @@ public class Training_SmokeTest extends CommonFunctions {
 		// logOut();
 		Thread.sleep(10000);
 
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='N_ESSUI_none_1']")).click();
@@ -696,13 +696,13 @@ public class Training_SmokeTest extends CommonFunctions {
 
 	}
 
-	@Test(enabled = true, priority = 6,groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 6,groups = {"Smoke" , "Nightly" })
 	public void verifyMSSUserAble2Enroll2Class() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		String Current = new CommonFunctions().GetCurrentDate();
 		// String CurrentPlus10 = new CommonFunctions().GetCurrentDateAdd10();
 
@@ -976,6 +976,140 @@ public class Training_SmokeTest extends CommonFunctions {
 
 		
 	}
+	
+	@Test(enabled = true, priority = 7, groups = {"Smoke" , "Nightly" })
+	public void verifyMSSUserAble2Enrol2Class() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Switch2LeftLogin();
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Training']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_CrsFind_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		Switch2Middle();
+
+		String CoursesMainPageTitle = driver
+				.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(CoursesMainPageTitle, "Courses");
+
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		Add();
+
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']/input[2]")).sendKeys("MTTest");
+		driver.findElement(By.xpath(".//*[@id='C_CrsTitle_main_1']/input[2]")).sendKeys("MTTest");
+
+		//driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		Save();
+
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']/input[2]")).sendKeys("MTTest");
+		Find();
+		//driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
+
+		/*driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("list");*/
+		Switch2Right();
+
+		String CourseName = driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']")).getText();
+		s_assert.assertEquals(CourseName, "MTTest");
+
+		System.out.println("Verified Course Creation");
+
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']")).click();
+
+		/*driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");*/
+		
+		Switch2Middle();
+		
+		Delete();
+
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Alert alertOK = driver.switchTo().alert();
+		alertOK.accept();*/
+		
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
+	
+	@Test(enabled = true, priority = 8, groups = {"Smoke" , "Nightly" })
+	public void verifyUserAble2Enrol2ClassPresentInCalendar() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Switch2LeftLogin();
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Training']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_CrsFind_main_1']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		Switch2Middle();
+
+		String CoursesMainPageTitle = driver
+				.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(CoursesMainPageTitle, "Courses");
+
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		Add();
+
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']/input[2]")).sendKeys("MTTest");
+		driver.findElement(By.xpath(".//*[@id='C_CrsTitle_main_1']/input[2]")).sendKeys("MTTest");
+
+		//driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		Save();
+
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']/input[2]")).sendKeys("MTTest");
+		Find();
+		//driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
+
+		/*driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("list");*/
+		Switch2Right();
+
+		String CourseName = driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']")).getText();
+		s_assert.assertEquals(CourseName, "MTTest");
+
+		System.out.println("Verified Course Creation");
+
+		driver.findElement(By.xpath(".//*[@id='C_Crs_main_1']")).click();
+
+		/*driver.switchTo().defaultContent();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");*/
+		
+		Switch2Middle();
+		
+		Delete();
+
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Alert alertOK = driver.switchTo().alert();
+		alertOK.accept();*/
+		
+		driver.switchTo().defaultContent();
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
 	
 	
 }

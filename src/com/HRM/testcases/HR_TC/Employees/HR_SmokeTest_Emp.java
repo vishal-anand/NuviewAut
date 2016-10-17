@@ -95,7 +95,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -356,7 +356,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -443,7 +443,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -531,7 +531,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -633,7 +633,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
@@ -737,7 +737,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -848,7 +848,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		//	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
@@ -957,7 +957,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 	//	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//driver.switchTo().defaultContent();
@@ -1041,14 +1041,15 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Human Resources']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBLAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBLAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBLAANA' or @display='Processes' and @tip='HR Tasks']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_New Hire_main_1']")).click();
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1070,7 +1071,19 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		// =driver.findElement(By.xpath(".//*[@id='TabSet_Menu']")).getText();
 
 		// System.out.println(test);
-		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 
 		//General Tab
 
@@ -1288,7 +1301,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -1548,7 +1561,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -1657,7 +1670,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		String CurrentD = new CommonFunctions().GetCurrentDate();
 
@@ -1688,7 +1701,18 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		// =driver.findElement(By.xpath(".//*[@id='TabSet_Menu']")).getText();
 
 		// System.out.println(test);
-		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 
 		//General Tab
 
@@ -1852,7 +1876,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		String PastDate = new CommonFunctions().GetCurrentDateSub5();
 
@@ -2045,7 +2069,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		String FutureDate = new CommonFunctions().GetCurrentDateAdd2();
 
@@ -2232,7 +2256,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		//String FutureDate = new CommonFunctions().GetCurrentDateAdd2();
 
@@ -2501,7 +2525,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 	//	String FutureDate = new CommonFunctions().GetCurrentDateAdd2();
 
@@ -2744,7 +2768,7 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		//String FutureDate = new CommonFunctions().GetCurrentDateAdd2();
 
@@ -2915,13 +2939,13 @@ public class HR_SmokeTest_Emp extends CommonFunctions {
 			
 } 
 	
-	@Test(enabled = true, priority = 18, groups = {"Smoke"})
+	@Test(enabled = false, priority = 18, groups = {"Smoke"})
 	public void RehireMultipleEmp() throws InterruptedException {
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		//Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");

@@ -33,19 +33,20 @@ public class Reporting_SmokeTest extends CommonFunctions {
 	
 	
 
-	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 1, groups = {"Smoke" , "Nightly" })
 	public void verifyComplianceReportsEEO1() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Reporting']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
+		driver.findElement(By.xpath(".//*[@display='Compliance Report' and @tip='Compliance Report']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_EEO1_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -66,10 +67,11 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		s_assert.assertEquals(EEO1Page, "Compliance Report EEO1");
 		String today = new CommonFunctions().GetCurrentDate();
 		Select dropdownCompany = new Select(driver.findElement(By.xpath(".//*[@id='C_CmpName_none_1']/select")));
-		dropdownCompany.selectByValue("IGS");
-		driver.findElement(By.xpath(".//*[@id='C_RangeStart_none_1']/input[2]")).sendKeys(today);
+		//dropdownCompany.selectByValue("IGS");
+		dropdownCompany.selectByIndex(1);
+		driver.findElement(By.xpath(".//*[@id='C_RangeStart_none_1']/input[2]")).sendKeys("01/01/2016");
 		
-		driver.findElement(By.xpath(".//*[@id='C_RangeEnd_none_1']/input[2]")).sendKeys(today);
+		driver.findElement(By.xpath(".//*[@id='C_RangeEnd_none_1']/input[2]")).sendKeys("01/01/2016");
 		
 		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		
@@ -98,20 +100,21 @@ public class Reporting_SmokeTest extends CommonFunctions {
 	}
 	
 	
-	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 2, groups = {"Smoke" , "Nightly" })
 	public void verifyComplianceReportsEEO4() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Reporting']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
+		driver.findElement(By.xpath(".//*[@display='Compliance Report' and @tip='Compliance Report']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_EEO4_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -132,10 +135,11 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		s_assert.assertEquals(EEO4Page, "EEO4");
 		String today = new CommonFunctions().GetCurrentDate();
 		Select dropdownCompany = new Select(driver.findElement(By.xpath(".//*[@id='C_Company_main_1']/select")));
-		dropdownCompany.selectByValue("IGS");
-		driver.findElement(By.xpath(".//*[@id='C_StartDate_none_1']/input[2]")).sendKeys(today);
+		//dropdownCompany.selectByValue("IGS");
+		dropdownCompany.selectByIndex(1);
+		driver.findElement(By.xpath(".//*[@id='C_StartDate_none_1']/input[2]")).sendKeys("01/01/2016");
 		
-		driver.findElement(By.xpath(".//*[@id='C_EndDate_none_1']/input[2]")).sendKeys(today);
+		driver.findElement(By.xpath(".//*[@id='C_EndDate_none_1']/input[2]")).sendKeys("01/01/2016");
 		
 		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		
@@ -160,14 +164,14 @@ public class Reporting_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = false, priority = 3, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
 	public void verifyComplianceReportsVets100() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -175,7 +179,8 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Reporting']")).click();
 		log.info("Clicked on Reporting");
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
+		driver.findElement(By.xpath(".//*[@display='Compliance Report' and @tip='Compliance Report']")).click();
 		
 		driver.findElement(By.xpath(".//*[@id='C_Vets100_main_1']")).click();
 
@@ -197,10 +202,12 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		s_assert.assertEquals(VETS100APage, "Vets 100");
 		String today = new CommonFunctions().GetCurrentDate();
 		Select dropdownCompany = new Select(driver.findElement(By.xpath(".//*[@id='C_CmpName_none_1']/select")));
-		dropdownCompany.selectByValue("IGS");
-		driver.findElement(By.xpath(".//*[@id='C_StartDate_none_1']/input[2]")).sendKeys(today);
+		//dropdownCompany.selectByValue("IGS");
+		dropdownCompany.selectByIndex(1);
 		
-		driver.findElement(By.xpath(".//*[@id='C_EndDate_none_1']/input[2]")).sendKeys(today);
+		driver.findElement(By.xpath(".//*[@id='C_StartDate_none_1']/input[2]")).sendKeys("01/01/2016");
+		
+		driver.findElement(By.xpath(".//*[@id='C_EndDate_none_1']/input[2]")).sendKeys("01/01/2016");
 		
 		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		
@@ -225,14 +232,14 @@ public class Reporting_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = false, priority = 4, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 4, groups = {"Smoke" , "Nightly" })
 	public void verifyComplianceReportsVets100A() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -240,8 +247,8 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Reporting']")).click();
 		log.info("Clicked on Reporting");
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
-		
+		driver.findElement(By.xpath(".//*[@display='Compliance Report' and @tip='Compliance Report']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EDDAANA']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_Vets 100A_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -262,10 +269,12 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		s_assert.assertEquals(VETS100APage, "Vets 100A");
 		String today = new CommonFunctions().GetCurrentDate();
 		Select dropdownCompany = new Select(driver.findElement(By.xpath(".//*[@id='C_Company_none_1']/select")));
-		dropdownCompany.selectByValue("IGS");
-		driver.findElement(By.xpath(".//*[@id='C_StartDate_none_1']/input[2]")).sendKeys(today);
+		//dropdownCompany.selectByValue("IGS");
+		dropdownCompany.selectByIndex(1);
+		Thread.sleep(5000);
+		driver.findElement(By.xpath(".//*[@id='C_StartDate_none_1']/input[2]")).sendKeys("01/01/2016");
 		
-		driver.findElement(By.xpath(".//*[@id='C_EndDate_none_1']/input[2]")).sendKeys(today);
+		driver.findElement(By.xpath(".//*[@id='C_EndDate_none_1']/input[2]")).sendKeys("01/01/2016");
 		
 		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		
@@ -290,14 +299,14 @@ public class Reporting_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = false, priority = 5, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 5, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2PreviewLetter() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -371,7 +380,7 @@ public class Reporting_SmokeTest extends CommonFunctions {
 		
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();

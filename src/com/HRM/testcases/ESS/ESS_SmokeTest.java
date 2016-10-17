@@ -36,13 +36,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 	}
 	// Pay-Payroll
 
-	@Test(enabled = true, priority = 1, groups = {"Smoke"})
+	@Test(enabled = false, priority = 1, groups = {"Smoke"})
 	public void verifyUserCreatePayRollDirectDeposits() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -130,7 +130,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 		// logOut();
 		Thread.sleep(10000);
 
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
@@ -215,7 +215,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -286,13 +286,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 
 	}
 
-	@Test(enabled = true, priority = 3, groups = {"Smoke"})
+	@Test(enabled = false, priority = 3, groups = {"Smoke"})
 	public void verifyUserAbleToReqTimeOffSingleDay() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -421,7 +421,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 		/*
 		 * Thread.sleep(10000);
 		 * 
-		 * logIn("nvsuperuser1", "nuview"); Thread.sleep(5000); //String s = new
+		 * logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") ); Thread.sleep(5000); //String s = new
 		 * CommonFunctions().GetCurrentDate();
 		 * //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		 * driver.switchTo().frame("nav");
@@ -480,13 +480,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 
 	}
 
-	@Test(enabled = true, priority = 4, groups = {"Smoke"})
+	@Test(enabled = false, priority = 4, groups = {"Smoke"})
 	public void verifyUserAbleToReqTimeOffMultipleDay() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -619,7 +619,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 		/*
 		 * Thread.sleep(10000);
 		 * 
-		 * logIn("nvsuperuser1", "nuview"); Thread.sleep(5000); //String s = new
+		 * logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") ); Thread.sleep(5000); //String s = new
 		 * CommonFunctions().GetCurrentDate();
 		 * //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		 * driver.switchTo().frame("nav");
@@ -685,7 +685,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -693,7 +693,9 @@ public class ESS_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 
-		driver.findElement(By.xpath(".//*[@id='C_Calendar_main_1']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_Calendar_main_1']")).click();
+		
+		driver.findElement(By.xpath(".//*[@id='C_Calendar_main_1' or @display='Calendar' and @application='ESS']")).click();
 		// Thread.sleep(10000);
 
 		driver.switchTo().defaultContent();
@@ -719,13 +721,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 
 	// Personal Benefit Change
 
-	@Test(enabled = true, priority = 7, groups = {"Smoke"})
+	@Test(enabled = false, priority = 7, groups = {"Smoke"})
 	public void verifyUserAbleToChangeAddress() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -807,7 +809,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 		logOut();
 		Thread.sleep(10000);
 
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
@@ -891,13 +893,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 		s_assert.assertAll();
 	}
 
-	@Test(enabled = true, priority = 8, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 8, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAbleToChangeMaritalStatus() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1002,13 +1004,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 		s_assert.assertAll();
 	}
 
-	@Test(enabled = true, priority = 9, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 9, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAbleToAddandDeleteDependent() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1083,13 +1085,13 @@ public class ESS_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 10, groups = {"Smoke"} , description = "Verify Manager is able to Request for sub-ordinate time off/Verify Supervisor is able to approve request time off/Verify status of request time off at managers   ")
+	@Test(enabled = false, priority = 10, groups = {"Smoke"} , description = "Verify Manager is able to Request for sub-ordinate time off/Verify Supervisor is able to approve request time off/Verify status of request time off at managers   ")
 	public void VerifyManagerAble2RequestSubordinateTimeoffSupervisorAble2ApproveReqAndVerifyTimeoffStatus () throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -1163,7 +1165,7 @@ public class ESS_SmokeTest extends CommonFunctions {
 
 		logOut();
 		
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		Thread.sleep(5000);
 		// String s = new CommonFunctions().GetCurrentDate();
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

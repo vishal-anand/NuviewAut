@@ -18,12 +18,14 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 	
 	
 	@BeforeTest(alwaysRun = true)
-	 public void StartBrowser_NavURL() throws IOException {
-	  initData();  
+	 public void StartBrowser_NavURL() throws IOException, InterruptedException {
+	  initData(); 
+	  TimeSheetDataCreation();
 	 }
 	
 	@AfterTest(alwaysRun = true)
-	 public void ClosingBrowser() {  
+	 public void ClosingBrowser() throws Throwable, InterruptedException {  
+		 TimeSheetDataTearDown();
 	  closeBrowser();  
 	 }
 	
@@ -37,7 +39,7 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		 Switch2LeftLogin();
 		 Thread.sleep(15000);
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
@@ -52,24 +54,41 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		
 		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
 		
-		Add();
+		//Add();
 		
-		String TimeActTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		//String TimeActTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
 
-		s_assert.assertEquals(TimeActTitle, "Timesheet Activities");
+		//s_assert.assertEquals(TimeActTitle, "Timesheet Activities");
+		
+		if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 		
 		driver.findElement(By.xpath(".//*[@id='C_TimAct_main_1']/input[2]")).sendKeys("VicAct");
 		driver.findElement(By.xpath(".//*[@id='C_TimActName_main_1']/input[2]")).sendKeys("Vic");
 		Select DropAct = new Select(driver.findElement(By.xpath(".//*[@id='C_AbsCat_main_1']/select")));
-		DropAct.selectByValue("Holiday");
-		
+		//DropAct.selectByValue("Holiday");
+		DropAct.selectByIndex(1);
 		//driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
 		
 		Save();
 
 		Thread.sleep(5000);
 		
-		String Activity = driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_16']")).getText();
+		webtableElementTextAssert("//table[@class='datasheet']//td", "VicAct");
+		webtableElementTextAssert("//table[@class='datasheet']//td", "Vic");
+		
+		webtableElementClick("//table[@class='datasheet']//td", "VicAct", "link");
+		
+	/*	String Activity = driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_16']")).getText();
 
 		s_assert.assertEquals(Activity, "VicAct");
 		
@@ -81,7 +100,7 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 
 		s_assert.assertEquals(ActivityCat, "Holiday");
 		
-		driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_16']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_Lnk1_main_16']")).click();*/
 		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alert = driver.switchTo().alert();
 		alert.accept();*/
@@ -101,7 +120,7 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		 Switch2LeftLogin();
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
@@ -115,11 +134,23 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 
 		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
 		
-		Add();
+		//Add();
 		
-		String TimeGrpTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		//String TimeGrpTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
 
-		s_assert.assertEquals(TimeGrpTitle, "Timesheet Group");
+		//s_assert.assertEquals(TimeGrpTitle, "Timesheet Group");
+		
+        if(driver.findElements(By.xpath(".//*[@id='C_Add_Img']")).size()!=0){
+			
+			
+			driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		}
+		
+		else
+		{	
+		log.info("Find Element No Present");
+		}
 		
 		driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_main_1']/input[2]")).sendKeys("VicGrp");
 		driver.findElement(By.xpath(".//*[@id='C_TimCrdGrpName_main_1']/input[2]")).sendKeys("VicT");
@@ -127,27 +158,30 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		DropWeekStrtDay.selectByValue("Monday");
 		
 		driver.findElement(By.xpath(".//*[@id='C_SunWkEnd_main_1']/input[2]")).click();
-		
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA']")).click();
+		Thread.sleep(5000);
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA' or @display='Timesheet Activities' and @tip='Timesheet Activities']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_DatasheetNew_PayGrpAct_PayGrpAct_0']")).click();
 		
 		Select DropTmGrpAct = new Select(driver.findElement(By.xpath(".//*[@id='C_TimAct_PayGrpAct_0']/select")));
-		DropTmGrpAct.selectByValue("AM");
+		//DropTmGrpAct.selectByValue("AM");
+		DropTmGrpAct.selectByIndex(1);
 		driver.findElement(By.xpath(".//*[@id='C_TimActDef_PayGrpAct_0']/input[2]")).click();
 		driver.findElement(By.xpath(".//*[@id='C_DatasheetOk_PayGrpAct_PayGrpAct_0']")).click();
 		
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EAADAAABAAWA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EAADAAABAAWA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EAADAAABAAWA' or @display='Timesheet Element Options' and @tip='Timesheet Element Options']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_IncCstCde_main_1']/input[2]")).click();
 		driver.findElement(By.xpath(".//*[@id='C_IncPos_main_1']/input[2]")).click();
 		driver.findElement(By.xpath(".//*[@id='C_IncJob_main_1']/input[2]")).click();
 		
 		//driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
-		
+		Thread.sleep(5000);
 		Save();
 
 		Thread.sleep(5000);
 		
-		String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_Listmain_8']")).getText();
+		/*String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_Listmain_8']")).getText();
 
 		s_assert.assertEquals(TmGroup, "VicGrp");
 		
@@ -157,7 +191,14 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		
 
 		
-		driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_Listmain_8']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_Listmain_8']")).click();*/
+		
+		
+		webtableElementTextAssert("//table[@class='datasheet']//td", "VicGrp");
+		webtableElementTextAssert("//table[@class='datasheet']//td", "VicT");
+		
+		webtableElementClick("//table[@class='datasheet']//td", "VicGrp", "link");
+		
 		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alert = driver.switchTo().alert();
 		alert.accept();*/
@@ -176,13 +217,13 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 
 	} 
 	
-	@Test(enabled = true, priority = 3)
+	@Test(enabled = true, priority = 3,groups = {"Smoke" , "Nightly" })
 	public void verifyTimeSheetPeriodCreation() throws InterruptedException {
 
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 
 		 Switch2LeftLogin();
@@ -203,12 +244,13 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		s_assert.assertEquals(TimePeriodTitle, "Timesheet Period");
 		
 		Select DropTimeSheetGrp = new Select(driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_main_1']/select")));
-		DropTimeSheetGrp.selectByValue("CA_OT");
+		//DropTimeSheetGrp.selectByValue("CA_OT");
+		DropTimeSheetGrp.selectByIndex(1);
 		
 		driver.findElement(By.xpath(".//*[@id='C_PdYr_main_1']/input[2]")).sendKeys("2017");
 		driver.findElement(By.xpath(".//*[@id='C_PdNum_main_1']/input[2]")).sendKeys("1");
 		driver.findElement(By.xpath(".//*[@id='C_TimPdStrDt_main_1']/input[2]")).sendKeys("01/01/2017");
-		driver.findElement(By.xpath(".//*[@id='C_TimPdEndDt_main_1']/input[2]")).sendKeys("12/31/2017");
+		driver.findElement(By.xpath(".//*[@id='C_TimPdEndDt_main_1']/input[2]")).sendKeys("01/01/2017");
 		driver.findElement(By.xpath(".//*[@id='C_TimPdLck_main_1']/input[2]")).click();
 		Select DropTmPeriodStatus = new Select(driver.findElement(By.xpath(".//*[@id='C_TimPdSts_main_1']/select")));
 		DropTmPeriodStatus.selectByValue("Open");
@@ -223,9 +265,9 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		
 		driver.findElement(By.xpath(".//*[@id='C_PdYr_main_1']/input[2]")).sendKeys("2017");
 		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
-		String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrpLbl_main_1']")).getText();
+		//String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrpLbl_main_1']")).getText();
 
-		s_assert.assertEquals(TmGroup, "CA_OT");
+		//s_assert.assertEquals(TmGroup, "CA_OT");
 		
 		String PrdStartDate = driver.findElement(By.xpath(".//*[@id='C_TimPdStrDtLbl_main_1']")).getText();
 
@@ -233,7 +275,7 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		
 		String PrdEndDate = driver.findElement(By.xpath(".//*[@id='C_TimPdEndDtLbl_main_1']")).getText();
 
-		s_assert.assertEquals(PrdEndDate, "12/31/2017");
+		s_assert.assertEquals(PrdEndDate, "01/01/2017");
 		
 
 		
@@ -257,7 +299,7 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		 Switch2LeftLogin();
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Human Resources']")).click();
@@ -316,7 +358,7 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		 Switch2LeftLogin();
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
@@ -343,8 +385,9 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		
 		driver.findElement(By.xpath(".//*[@id='C_SunWkEnd_main_1']/input[2]")).click();
 		driver.findElement(By.xpath(".//*[@id='C_SatWkEnd_main_1']/input[2]")).click();
-		
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA']")).click();
+		Thread.sleep(5000);
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA' or @display='Timesheet Activities' and @tip='Timesheet Activities']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_DatasheetNew_PayGrpAct_PayGrpAct_0']")).click();
 		
 		//Select DropTmGrpAct = new Select(driver.findElement(By.xpath(".//*[@id='C_TimAct_PayGrpAct_0']/select")));
@@ -403,13 +446,13 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 	} 
 	
 	
-	@Test(enabled = true, priority = 6, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 6, groups = {"Smoke"})
 	public void verifyUserAbleToAsssignNewlyCreatedTimeSheetGroup() throws InterruptedException {
 
 		 initBrowser();
 		  driver.get(Locators.NuviewURL);
 		  //Enter your real Userd ID and Password of FB bellow.
-		 logIn("nvsuperuser1", "nuview");
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		 Switch2LeftLogin();
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
@@ -437,7 +480,8 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		driver.findElement(By.xpath(".//*[@id='C_SunWkEnd_main_1']/input[2]")).click();
 		driver.findElement(By.xpath(".//*[@id='C_SatWkEnd_main_1']/input[2]")).click();
 		
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EBADAAABAAWA' or @display='Timesheet Activities' and @tip='Timesheet Activities']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_DatasheetNew_PayGrpAct_PayGrpAct_0']")).click();
 		
 		//Select DropTmGrpAct = new Select(driver.findElement(By.xpath(".//*[@id='C_TimAct_PayGrpAct_0']/select")));
@@ -465,13 +509,18 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 
 		Thread.sleep(5000);
 		
-		String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_Listmain_8']")).getText();
+		/*String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_Listmain_8']")).getText();
 
 		s_assert.assertEquals(TmGroup, "Test1");
 		
 		String TmGroupName = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrpName_Listmain_8']")).getText();
 
-		s_assert.assertEquals(TmGroupName, "Test1");
+		s_assert.assertEquals(TmGroupName, "Test1");*/
+		
+        webtableElementTextAssert("//table[@class='datasheet']//td", "Test1");
+      //  webtableElementTextAssert("//table[@class='datasheet']//td", "VicT");
+		
+		
 		
 		
 		Switch2Left();
@@ -540,6 +589,83 @@ public class TimeSheet_SmokeTest extends CommonFunctions {
 		 logOut();
 		 s_assert.assertAll();
 		
+	} 
+	
+	
+	@Test(enabled = true, priority = 7, groups = {"Smoke" , "Nightly" })
+	public void verifyUserAbleToAsssignNewlyCreatedTimeSheetGroups() throws InterruptedException {
+
+		 initBrowser();
+		  driver.get(Locators.NuviewURL);
+		  //Enter your real Userd ID and Password of FB bellow.
+		 logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+
+		 Switch2LeftLogin();
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Time Attendance']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_TimePd_main_1']")).click();
+
+		Thread.sleep(5000);
+
+		
+		Switch2MidException();
+
+		//driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
+		
+		Add();
+		
+		String TimePeriodTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+
+		s_assert.assertEquals(TimePeriodTitle, "Timesheet Period");
+		
+		Select DropTimeSheetGrp = new Select(driver.findElement(By.xpath(".//*[@id='C_TimCrdGrp_main_1']/select")));
+		//DropTimeSheetGrp.selectByValue("CA_OT");
+		DropTimeSheetGrp.selectByIndex(1);
+		
+		driver.findElement(By.xpath(".//*[@id='C_PdYr_main_1']/input[2]")).sendKeys("2017");
+		driver.findElement(By.xpath(".//*[@id='C_PdNum_main_1']/input[2]")).sendKeys("1");
+		driver.findElement(By.xpath(".//*[@id='C_TimPdStrDt_main_1']/input[2]")).sendKeys("01/01/2017");
+		driver.findElement(By.xpath(".//*[@id='C_TimPdEndDt_main_1']/input[2]")).sendKeys("01/01/2017");
+		driver.findElement(By.xpath(".//*[@id='C_TimPdLck_main_1']/input[2]")).click();
+		Select DropTmPeriodStatus = new Select(driver.findElement(By.xpath(".//*[@id='C_TimPdSts_main_1']/select")));
+		DropTmPeriodStatus.selectByValue("Open");
+		
+
+		
+		//driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
+		
+		Save();
+
+		Thread.sleep(5000);
+		
+		driver.findElement(By.xpath(".//*[@id='C_PdYr_main_1']/input[2]")).sendKeys("2017");
+		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
+		//String TmGroup = driver.findElement(By.xpath(".//*[@id='C_TimCrdGrpLbl_main_1']")).getText();
+
+		//s_assert.assertEquals(TmGroup, "CA_OT");
+		
+		String PrdStartDate = driver.findElement(By.xpath(".//*[@id='C_TimPdStrDtLbl_main_1']")).getText();
+
+		s_assert.assertEquals(PrdStartDate, "01/01/2017");
+		
+		String PrdEndDate = driver.findElement(By.xpath(".//*[@id='C_TimPdEndDtLbl_main_1']")).getText();
+
+		s_assert.assertEquals(PrdEndDate, "01/01/2017");
+		
+
+		
+		driver.findElement(By.xpath(".//*[@id='C_Pd_main_1']")).click();
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Alert alert = driver.switchTo().alert();
+		alert.accept();*/
+		
+		Delete();
+		
+		 Thread.sleep(5000);
+		 driver.switchTo().defaultContent();
+		 logOut();
+		 s_assert.assertAll();
+		 
 	} 
 
 

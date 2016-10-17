@@ -39,13 +39,13 @@ public class System_SmokeTest extends CommonFunctions {
 	
 	
 
-	@Test(enabled = true, priority = 1, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2SearchEmp() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 		
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -126,13 +126,13 @@ public class System_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 2, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2ChangePassword() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -215,21 +215,22 @@ public class System_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 3, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2Rebuild() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		//String s  = GetCurrentDate();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_System']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0ECBAANA' or @display='Security' and @tip='Security']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_SecFind_main_1']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_Sec_main_1']")).click();
 
@@ -310,7 +311,7 @@ public class System_SmokeTest extends CommonFunctions {
 		
 	}
 	
-	@Test(enabled = true, priority = 4, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = false, priority = 4, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAble2LoginWithChangedPassword() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();

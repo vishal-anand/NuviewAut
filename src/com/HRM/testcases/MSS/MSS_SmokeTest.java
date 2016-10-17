@@ -33,13 +33,13 @@ public class MSS_SmokeTest extends CommonFunctions {
 	/*	C786818	Verify sub-ordinate are displaying in search Result			
 	    C786819	Verify the sub-ordinate profile */
 
-	@Test(enabled = true, priority = 1, groups = {"Smoke" , "Nightly" })
+	/*@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" })
 	public void verifySupervisorAndSubordinateIsdisplayedInSearchResult() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -98,7 +98,7 @@ public class MSS_SmokeTest extends CommonFunctions {
 		logOut();
 		s_assert.assertAll();
 
-	}
+	}*/
 	
 	@Test(enabled = false, priority = 2, groups = {"Smoke"})
 	public void verifyManagerAble2RequestSubordinateTimeoffAndSupervisorAble2Approve() throws InterruptedException {
@@ -106,7 +106,7 @@ public class MSS_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -248,14 +248,14 @@ List<WebElement> allDates=driver.findElements(By.xpath("//table[@class='calendar
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EFNAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EFNAANA' or @display='Employee Personal Info' and @tip='MSSEmpFind']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_MSSTimOff_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -320,14 +320,15 @@ List<WebElement> allDates=driver.findElements(By.xpath("//table[@class='calendar
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
 		driver.switchTo().frame("nav");
 		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
-		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA' or @display='Authorizations' and @tip='MSSAth']")).click();
 		driver.findElement(By.xpath(".//*[@id='C_MSSTrace_main_1']")).click();
 
 		// driver.switchTo().parentFrame();
@@ -363,8 +364,71 @@ List<WebElement> allDates=driver.findElements(By.xpath("//table[@class='calendar
 		String PageTitleN = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
 		s_assert.assertEquals(PageTitleN, "Authorization Trace");
 		
-		String ToDoName = driver.findElement(By.xpath(".//*[@id='GroupHeader--2_main_1_Label-To Do Name']")).getText();
-		s_assert.assertEquals(ToDoName, "To Do Name:");
+		/*String ToDoName = driver.findElement(By.xpath(".//*[@id='GroupHeader--2_main_1_Label-To Do Name']")).getText();
+		s_assert.assertEquals(ToDoName, "To Do Name:");*/
+
+		
+
+		driver.switchTo().defaultContent();
+
+		logOut();
+		s_assert.assertAll();
+
+	}
+	
+	
+	@Test(enabled = true, priority = 5, groups = {"Smoke" , "Nightly" })
+	public void verifySupervisorAndSubordinateIsdisplayedInSearchResult() throws InterruptedException {
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		initBrowser();
+		driver.get(Locators.NuviewURL);
+		// Enter your real Userd ID and Password of FB bellow.
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.switchTo().parentFrame();
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("nav");
+		driver.findElement(By.xpath(".//*[@id='TabTitle_Menu_Managers']")).click();
+		//driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA']")).click();
+		driver.findElement(By.xpath(".//*[@id='Branch_Title_ID0EINAANA' or @display='Authorizations' and @tip='MSSAth']")).click();
+		driver.findElement(By.xpath(".//*[@id='C_MSSTrace_main_1']")).click();
+
+		// driver.switchTo().parentFrame();
+		driver.switchTo().defaultContent();
+
+		Thread.sleep(5000);
+
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.switchTo().parentFrame();
+		// driver.switchTo().frame(driver.findElement(By.name("dsp")));
+		/*driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		driver.switchTo().frame("edit");
+
+		
+
+	String PersonalinfPage = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(PersonalinfPage, "Managed Employees");
+		
+		String SupervisonNos = driver.findElement(By.xpath(".//*[@id='C_Sup_main_1']/input[2]")).getAttribute("value");
+		s_assert.assertEquals(SupervisonNos, "999503");
+		
+		driver.switchTo().defaultContent();*/
+		driver.switchTo().frame("login");
+		driver.switchTo().frame("dsp");
+		//driver.switchTo().frame("list");
+		
+		String PageTitle = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(PageTitle, "Authorization Trace");
+		
+		Find();
+		
+		String PageTitleN = driver.findElement(By.xpath("html/body/form/table/tbody/tr/td/table[2]/tbody/tr/td[1]")).getText();
+		s_assert.assertEquals(PageTitleN, "Authorization Trace");
+		
+		/*String ToDoName = driver.findElement(By.xpath(".//*[@id='GroupHeader--2_main_1_Label-To Do Name']")).getText();
+		s_assert.assertEquals(ToDoName, "To Do Name:");*/
 
 		
 

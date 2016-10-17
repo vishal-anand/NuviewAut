@@ -27,13 +27,13 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		closeBrowser();
 	}
 	
-	@Test(enabled = false, priority = 1, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 1, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAbleCreateJobPostingTemp() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -145,7 +145,11 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		   // driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		}*/
 
-		String JobPostingTempName = driver.findElement(By.xpath(".//*[@id='C_PostTemp_main_2']")).getText();
+		
+		webtableElementTextAssert("//table[@class='datasheet']//td", "FT");
+		webtableElementClick("//table[@class='datasheet']//td", "FT", "link");
+		Thread.sleep(5000);
+		/*String JobPostingTempName = driver.findElement(By.xpath(".//*[@id='C_PostTemp_main_2']")).getText();
 		s_assert.assertEquals(JobPostingTempName, "FT");
 		
 		driver.findElement(By.xpath(".//*[@id='C_PostTemp_main_2']")).click();
@@ -153,20 +157,21 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		
 		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alertOK = driver.switchTo().alert();
-		alertOK.accept();
+		alertOK.accept();*/
+		Delete();
 		driver.switchTo().defaultContent();
 		logOut();
 		s_assert.assertAll();
 
 	}
 	
-	@Test(enabled = false, priority = 2, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 2, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAbleCreateCandidateProfileTemp() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -203,29 +208,32 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 
 		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
 		
+		webtableElementTextAssert("//table[@class='datasheet']//td", "Full Time");
+		webtableElementClick("//table[@class='datasheet']//td", "Full Time", "link");
+		Thread.sleep(5000);
 
-		String CandProfileTempName = driver.findElement(By.xpath(".//*[@id='C_CssStp_main_2']")).getText();
-		s_assert.assertEquals(CandProfileTempName, "Full Time");
+		//String CandProfileTempName = driver.findElement(By.xpath(".//*[@id='C_CssStp_main_2']")).getText();
+		//s_assert.assertEquals(CandProfileTempName, "Full Time");
 		
-		driver.findElement(By.xpath(".//*[@id='C_CssStp_main_2']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_CssStp_main_2']")).click();
 		
-		
-		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Delete();
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alertOK = driver.switchTo().alert();
-		alertOK.accept();
+		alertOK.accept();*/
 		driver.switchTo().defaultContent();
 		logOut();
 		s_assert.assertAll();
 
 	}
 	
-	@Test(enabled = false, priority = 3, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 3, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAbleCreatePostingSite() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -254,40 +262,44 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		
 		driver.findElement(By.xpath(".//*[@id='C_RcrPst_main_1']/input[2]")).sendKeys("New");
 		driver.findElement(By.xpath(".//*[@id='C_RcrPstName_main_1']/input[2]")).sendKeys("New");
-		Select DropJobPostingType = new Select(
+		/*Select DropJobPostingType = new Select(
 				driver.findElement(By.xpath(".//*[@id='C_RcrPstTmp_main_1']/select")));
-		DropJobPostingType.selectByValue("PT");
-		
-		Select DropCandProfileType = new Select(
+		//DropJobPostingType.selectByValue("PT");
+		DropJobPostingType.selectByIndex(1);*/
+		/*Select DropCandProfileType = new Select(
 				driver.findElement(By.xpath(".//*[@id='C_RcrAppTmp_main_1']/select")));
-		DropCandProfileType.selectByValue("Part Time");
+		//DropCandProfileType.selectByValue("Part Time");
+		DropCandProfileType.selectByIndex(1);*/
 
 
 		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
 		
 
-		String CandProfileTempName = driver.findElement(By.xpath(".//*[@id='C_RcrPst_main_3']")).getText();
-		s_assert.assertEquals(CandProfileTempName, "New");
+		//String CandProfileTempName = driver.findElement(By.xpath(".//*[@id='C_RcrPst_main_3']")).getText();
+		//s_assert.assertEquals(CandProfileTempName, "New");
 		
-		driver.findElement(By.xpath(".//*[@id='C_RcrPst_main_3']")).click();
+		webtableElementTextAssert("//table[@class='datasheet']//td", "New");
+		webtableElementClick("//table[@class='datasheet']//td", "New", "link");
+		Thread.sleep(5000);
+		//driver.findElement(By.xpath(".//*[@id='C_RcrPst_main_3']")).click();
 		
-		
-		driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		Delete();
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alertOK = driver.switchTo().alert();
-		alertOK.accept();
+		alertOK.accept();*/
 		driver.switchTo().defaultContent();
 		logOut();
 		s_assert.assertAll();
 
 	}
 	
-	@Test(enabled = false, priority = 4, groups = {"Smoke" , "Nightly" })
+	@Test(enabled = true, priority = 4, groups = {"Smoke" , "Nightly" })
 	public void verifyUserAbleCreateNewRequisition() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -312,7 +324,7 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 
 		driver.findElement(By.xpath(".//*[@id='C_Add_Img']")).click();
 		
-		driver.findElement(By.xpath(".//*[@id='C_Req_main_1']/input[2]")).sendKeys("100");
+		driver.findElement(By.xpath(".//*[@id='C_Req_main_1']/input[2]")).sendKeys("10001");
 		driver.findElement(By.xpath(".//*[@id='C_ReqName_main_1']/input[2]")).sendKeys("Test");
 		Select DropRequisitionStatus = new Select(
 				driver.findElement(By.xpath(".//*[@id='C_ReqStatus_main_1']/select")));
@@ -320,14 +332,16 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		
 		Select DropLocation = new Select(
 				driver.findElement(By.xpath(".//*[@id='C_Loc_main_1']/select")));
-		DropLocation.selectByValue("ATL");
+		//DropLocation.selectByValue("ATL");
+		DropLocation.selectByIndex(1);
 		driver.findElement(By.xpath(".//*[@id='TabTitle__Posting']")).click();
 		
 		driver.findElement(By.xpath(".//*[@id='C_DatasheetNew_dsOfReqPosted_dsOfReqPosted_0']")).click();
 		
 		Select DropPostingSite = new Select(
 				driver.findElement(By.xpath(".//*[@id='C_RcrPst_dsOfReqPosted_0']/select")));
-		DropPostingSite.selectByValue("PartTime");
+		//DropPostingSite.selectByValue("PartTime");
+		DropPostingSite.selectByIndex(1);
 		String CurrentDate = new CommonFunctions().GetCurrentDate();
 		String CurrentDateAdd10 = new CommonFunctions().GetCurrentDateAdd10();
 		
@@ -338,7 +352,7 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 
 		driver.findElement(By.xpath(".//*[@id='C_Save_Img']")).click();
 		
-		driver.findElement(By.xpath(".//*[@id='C_Req_main_1']/input[2]")).sendKeys("100");
+		driver.findElement(By.xpath(".//*[@id='C_Req_main_1']/input[2]")).sendKeys("10001");
 		driver.findElement(By.xpath(".//*[@id='C_Find_Img']")).click();
 		
 		
@@ -348,10 +362,12 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("list");
 		
 
-		String RequisitionNoV = driver.findElement(By.xpath(".//*[@id='C_Lnk2_main_1']")).getText();
-		s_assert.assertEquals(RequisitionNoV, "100");
+		//String RequisitionNoV = driver.findElement(By.xpath(".//*[@id='C_Lnk2_main_1']")).getText();
+		//s_assert.assertEquals(RequisitionNoV, "10001");
+		webtableElementTextAssert("//table[@class='datasheet']//td", "10001");
+		webtableElementClick("//table[@class='datasheet']//td", "10001", "link");
 		
-		driver.findElement(By.xpath(".//*[@id='C_Lnk2_main_1']")).click();
+		//driver.findElement(By.xpath(".//*[@id='C_Lnk2_main_1']")).click();
 		
 		driver.switchTo().defaultContent();
 		driver.switchTo().frame("login");
@@ -359,9 +375,10 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		driver.switchTo().frame("edit");
 		
 		
-	/*	driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
+		/*driver.findElement(By.xpath(".//*[@id='C_Delete_Img']")).click();
 		Alert alertOK = driver.switchTo().alert();
 		alertOK.accept();*/
+		Delete();
 		driver.switchTo().defaultContent();
 		logOut();
 		s_assert.assertAll();
@@ -376,7 +393,7 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
@@ -443,7 +460,7 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
 		logOut();
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		driver.switchTo().parentFrame();
 		driver.switchTo().frame("login");
@@ -590,13 +607,13 @@ public class Recruiting_SmokeTest extends CommonFunctions {
 
 	}
 	
-	@Test(enabled = true, priority = 6, groups = {"Smoke"})
+	@Test(enabled = true, priority = 6, groups = {"Smoke","Nightly"})
 	public void verifyUserAblePublishPostingCSSAndWorkflow() throws InterruptedException {
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		initBrowser();
 		driver.get(Locators.NuviewURL);
 		// Enter your real Userd ID and Password of FB bellow.
-		logIn("nvsuperuser1", "nuview");
+		logIn(SYSPARAM.getProperty("Username") , SYSPARAM.getProperty("Password") );
 
 		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.switchTo().parentFrame();
